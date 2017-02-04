@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -181,6 +182,28 @@ VerificarCedula c = new VerificarCedula();
             JOptionPane.showMessageDialog(this, "No se pudo actualizar"+ex);
         }
     }   
+            
+            public void eliminar(){
+        Conexion cc=new Conexion();
+        Connection cn = cc.conectar();
+        if(JOptionPane.showConfirmDialog(new JFrame(),"Esta seguro que desea eliminar el dato","Borra registro",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+        {
+        String sql = "";
+        sql = "delete from clientes where CI_CLI ='"+txtCedula.getText()+"'";
+        try {
+            PreparedStatement psd=cn.prepareStatement(sql);
+            int n=psd.executeUpdate();
+            if(n>0){
+                JOptionPane.showMessageDialog(null, "Se borro el registro");
+                cargarTabla("");
+                limpiar();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo borrar el registro");
+        }
+        }}
+ 
+
 
 
     /**
@@ -337,6 +360,11 @@ VerificarCedula c = new VerificarCedula();
         });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("CANCELAR");
 
@@ -414,6 +442,11 @@ VerificarCedula c = new VerificarCedula();
     limpiar();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        eliminar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -453,7 +486,7 @@ VerificarCedula c = new VerificarCedula();
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
+    public static javax.swing.JButton btnGuardar;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -465,11 +498,11 @@ VerificarCedula c = new VerificarCedula();
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaClientes;
-    private javax.swing.JTextField txtApellido;
+    public static javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtBuscarCedula;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    public static javax.swing.JTextField txtCedula;
+    public static javax.swing.JTextField txtDireccion;
+    public static javax.swing.JTextField txtNombre;
+    public static javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
