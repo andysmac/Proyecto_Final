@@ -25,6 +25,36 @@ VerificarCedula c = new VerificarCedula();
     public clientes() {
         initComponents();
     }
+        public void limpiar(){
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtDireccion.setText("");
+        txtBuscarCedula.setText("");
+        txtTelefono.setText("");
+    }    
+    public void bloquear(){
+        txtCedula.setEnabled(true);
+        txtNombre.setEnabled(true);
+        txtApellido.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        btnActualizar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+        btnCancelar.setEnabled(false);        
+     } 
+    public void desbloquear(){
+        txtNombre.setEnabled(true);
+        txtApellido.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        btnActualizar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+        btnCancelar.setEnabled(true); 
+        txtBuscarCedula.setEnabled(true);
+        
+     }   
+
 
       void guardarCliente() {
         Conexion cc=new Conexion();
@@ -121,11 +151,11 @@ VerificarCedula c = new VerificarCedula();
         tablaClientes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        txtBuscarCedula = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -222,7 +252,7 @@ VerificarCedula c = new VerificarCedula();
                 .addGap(21, 21, 21)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscarCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -230,18 +260,18 @@ VerificarCedula c = new VerificarCedula();
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscarCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        jButton1.setText("GUARDAR");
+        btnGuardar.setText("GUARDAR");
 
-        jButton2.setText("ACTUALIZAR");
+        btnActualizar.setText("ACTUALIZAR");
 
-        jButton3.setText("ELIMINAR");
+        btnEliminar.setText("ELIMINAR");
 
-        jButton4.setText("CANCELAR");
+        btnCancelar.setText("CANCELAR");
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -256,10 +286,10 @@ VerificarCedula c = new VerificarCedula();
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(89, 89, 89)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)))
+                            .addComponent(btnActualizar)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnEliminar)
+                            .addComponent(btnCancelar)))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -276,16 +306,16 @@ VerificarCedula c = new VerificarCedula();
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton1)
+                        .addComponent(btnGuardar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnActualizar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btnEliminar)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton4)))
+                        .addComponent(btnCancelar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,10 +370,10 @@ VerificarCedula c = new VerificarCedula();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -356,7 +386,7 @@ VerificarCedula c = new VerificarCedula();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtBuscarCedula;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
