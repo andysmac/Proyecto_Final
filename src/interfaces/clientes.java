@@ -5,17 +5,74 @@
  */
 package interfaces;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MARCOS
  */
 public class clientes extends javax.swing.JFrame {
+VerificarCedula c = new VerificarCedula();
+    public DefaultTableModel model;
+    public Thread h1;
 
-    /**
-     * Creates new form clientes
-     */
+  
     public clientes() {
         initComponents();
+    }
+
+      void guardarCliente() {
+        Conexion cc=new Conexion();
+        Connection cn = cc.conectar();
+        if (txtCedula.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingresar cedula");
+            txtCedula.requestFocus();
+        } else if (txtNombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingresar nombres");
+            txtNombre.requestFocus();
+        } else if (txtApellido.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingresar apellidos");
+            txtApellido.requestFocus();
+        } else if (txtDireccion.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingresar direccion");
+            txtDireccion.requestFocus();
+        } else {
+            try {
+                String Direccion, Cedula, Telefono;
+                String[] Nombre, Apellido;
+                String sql = "";
+                Nombre = txtNombre.getText().split(" ");
+                Apellido = txtApellido.getText().split(" ");
+                Direccion = txtDireccion.getText();
+                Cedula = txtCedula.getText();
+                Telefono = txtTelefono.getText();
+
+                sql = "insert into clientes(ci_cli, nom1_cli, nom2_cli, ape1_cli, ape2_cli, dir_cli, tel_cli )values(?,?,?,?,?,?,?)";
+
+                PreparedStatement psw = cn.prepareStatement(sql);
+
+                psw.setString(1, Cedula);
+                psw.setString(2, Nombre[0]);
+                psw.setString(3, Nombre[1]);
+                psw.setString(4, Apellido[0]);
+                psw.setString(5, Apellido[1]);
+                psw.setString(6, Direccion);
+                psw.setString(7, Telefono);
+                int n = psw.executeUpdate();
+
+                if (n > 0) {
+                    JOptionPane.showMessageDialog(null, "Se agrego un nuevo cliente");
+                    //GuardarC();
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "El cliente ya existe" + ex);
+            }
+        }
+
     }
 
     /**
@@ -207,7 +264,7 @@ public class clientes extends javax.swing.JFrame {
                         .addComponent(jButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,7 +275,9 @@ public class clientes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         pack();
