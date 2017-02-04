@@ -295,6 +295,15 @@ public class proveedores extends javax.swing.JFrame {
             crearBorde(Color.BLACK,txt);
         }
      }
+      
+      public void datos(){
+        compras.txtCedula.setText(txtCedula.getText());
+        compras.txtNombre.setText(txtNombre.getText());
+        compras.txtApellido.setText(txtApellido.getText());
+        compras.txtDireccion.setText(txtDireccion.getText());
+        compras.txtTelefono.setText(txtTelefono.getText());
+        compras.txtRUCEmp.setText(txtRuc.getText());
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -475,6 +484,7 @@ public class proveedores extends javax.swing.JFrame {
         );
 
         btnIngresarProveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnIngresarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
         btnIngresarProveedor.setText("INGRESAR");
         btnIngresarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -483,6 +493,7 @@ public class proveedores extends javax.swing.JFrame {
         });
 
         btActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/1 (1).png"))); // NOI18N
         btActualizar.setText("ACTUALIZAR");
         btActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -491,6 +502,7 @@ public class proveedores extends javax.swing.JFrame {
         });
 
         btEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/DELETE1.png"))); // NOI18N
         btEliminar.setText("ELIMINAR");
         btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -499,6 +511,7 @@ public class proveedores extends javax.swing.JFrame {
         });
 
         btCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exi.png"))); // NOI18N
         btCancelar.setText("CANCELAR");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,7 +600,7 @@ public class proveedores extends javax.swing.JFrame {
                             .addComponent(btActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnIngresarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnIngresarProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -600,9 +613,9 @@ public class proveedores extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(31, 31, 31)
                         .addComponent(btnIngresarProveedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
