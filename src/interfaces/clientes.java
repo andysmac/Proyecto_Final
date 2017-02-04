@@ -155,6 +155,33 @@ VerificarCedula c = new VerificarCedula();
             JOptionPane.showMessageDialog(null, "La tabla Clientes tiene problemas al cargarse\n" + ex);
         }
     }  
+           
+            public void actualizarClientes()   {
+        Conexion cc=new Conexion();
+        Connection cn = cc.conectar();
+        String [] Nombre, Apellido;
+        Nombre = txtNombre.getText().split(" ");
+        Apellido = txtApellido.getText().split(" ");
+        String sql;
+        sql="update clientes set  nom1_cli ='"+Nombre[0]+"',"
+                +"nom2_cli='"+Nombre[1]+"',"
+                +"ape1_cli='"+Apellido[0]+"',"
+                +"ape2_cli='"+Apellido[1]+"',"
+                +"dir_cli='"+txtDireccion.getText()+"',"
+                +"tel_cli='"+txtTelefono.getText()+"'"
+                +"where ci_cli='"+txtCedula.getText()+"'";
+        try {
+            PreparedStatement psd=cn.prepareStatement(sql);
+            int n=psd.executeUpdate();//Ejecutar el 
+            if(n>0){
+                JOptionPane.showMessageDialog(this, "Se actualizo correctamente");
+                cargarTabla("");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar"+ex);
+        }
+    }   
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -296,8 +323,18 @@ VerificarCedula c = new VerificarCedula();
         );
 
         btnGuardar.setText("GUARDAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
 
@@ -363,6 +400,19 @@ VerificarCedula c = new VerificarCedula();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+        guardarCliente();
+        cargarTabla("");
+        btnGuardar.setEnabled(false);
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        actualizarClientes();
+    limpiar();
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
