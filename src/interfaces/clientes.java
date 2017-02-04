@@ -8,6 +8,8 @@ package interfaces;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -74,6 +76,25 @@ VerificarCedula c = new VerificarCedula();
         }
 
     }
+      
+          public void cargarDatos(){
+         tablaClientes.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(tablaClientes.getSelectedRow()!= -1){ 
+                    int fila = tablaClientes.getSelectedRow();
+                    txtCedula.setText(tablaClientes.getValueAt(fila, 0).toString());
+                    txtNombre.setText(tablaClientes.getValueAt(fila, 1).toString().concat(" ").concat(tablaClientes.getValueAt(fila, 2).toString()));
+                    txtApellido.setText(tablaClientes.getValueAt(fila, 3).toString().concat(" ").concat(tablaClientes.getValueAt(fila, 4).toString()));
+                    txtDireccion.setText(tablaClientes.getValueAt(fila, 5).toString());
+                    txtTelefono.setText(tablaClientes.getValueAt(fila, 6).toString());
+                 //   desbloquear();                    
+                }
+            }
+        } ); 
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,7 +118,7 @@ VerificarCedula c = new VerificarCedula();
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
@@ -178,7 +199,7 @@ VerificarCedula c = new VerificarCedula();
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -189,7 +210,7 @@ VerificarCedula c = new VerificarCedula();
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaClientes);
 
         jLabel6.setText("BUSCAR:");
 
@@ -333,7 +354,7 @@ VerificarCedula c = new VerificarCedula();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCedula;
