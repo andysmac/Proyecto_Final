@@ -5,11 +5,25 @@
  */
 package interfaces;
 
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
  */
 public class proveedores extends javax.swing.JFrame {
+    VerificarCedula c = new VerificarCedula();
+    public DefaultTableModel model;
 
     /**
      * Creates new form proveedores
@@ -18,6 +32,77 @@ public class proveedores extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void cargarDatos(){
+             tablaProveedores.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+                     @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(tablaProveedores.getSelectedRow()!= -1){ 
+                    int fila = tablaProveedores.getSelectedRow();
+                    txtCedula.setText(tablaProveedores.getValueAt(fila, 0).toString());
+                    txtNombre.setText(tablaProveedores.getValueAt(fila, 1).toString().concat(" ").concat(tablaProveedores.getValueAt(fila, 2).toString()));
+                    txtApellido.setText(tablaProveedores.getValueAt(fila, 3).toString().concat(" ").concat(tablaProveedores.getValueAt(fila, 4).toString()));
+                    txtDireccion.setText(tablaProveedores.getValueAt(fila, 5).toString());
+                    txtTelefono.setText(tablaProveedores.getValueAt(fila, 6).toString());
+                    txtRuc.setText(tablaProveedores.getValueAt(fila, 7).toString());
+                        }
+            }
+        } ); 
+        }
+    
+    public void controlSoloLetras(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+        }
+    
+    public void cargarTabla(String dato) {
+        Conexion cc=new Conexion();
+        Connection cn = cc.conectar();
+        String[] titulo = {"Cedula", "Nombre 1", "Nombre 2", "Apellido 1", "Apellido 2", "Direccion", "Telefono", "Ruc"};
+        String[] registros = new String[8];
+        String sql;
+        sql = "SELECT * FROM PROVEEDORES";
+        model = new DefaultTableModel(null, titulo);
+        try {
+             Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+            registros[0] = rs.getString("CI_PRO");
+                registros[1] = rs.getString("NOM1_PRO");
+                registros[2] = rs.getString("NOM2_PRO");
+                registros[3] = rs.getString("APE1_PRO");
+                registros[4] = rs.getString("APE2_PRO");
+                registros[5] = rs.getString("DIR_PRO");
+                registros[6] = rs.getString("TEL_PRO");
+                registros[7] = rs.getString("RUC_EMR_PR");
+                model.addRow(registros);
+                tablaProveedores.setModel(model);
+                }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "La tabla Proveedores tiene problemas al cargarse\n" + ex);
+               }
+    }
+    private void crearBorde(Color c,JTextField t){
+     t.setBorder(BorderFactory.createLineBorder(c)); 
+  }
+
+      public void controlCaracteres2(java.awt.event.KeyEvent evt) {
+          char k=evt.getKeyChar();
+          JTextField txt=(JTextField)evt.getComponent();
+          if(txt.getText().length()>=13){
+               crearBorde(Color.red,txt);
+               evt.consume();
+            }
+    if(k<'0'||k>'9'){
+            crearBorde(Color.ORANGE,txt);
+            evt.consume(); 
+        }else{
+            if(!(txt.getText().length()>=13))
+            crearBorde(Color.BLACK,txt);
+        }
+     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
