@@ -7,6 +7,9 @@ package interfaces;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -125,6 +128,33 @@ VerificarCedula c = new VerificarCedula();
         } ); 
     }
 
+           public void cargarTabla(String dato) {
+        Conexion cc=new Conexion();
+        Connection cn = cc.conectar();
+        String[] titulo = {"Cedula", "Nombre 1", "Nombre 2", "Apellido 1", "Apellido 2", "Direccion", "Telefono"};
+        String[] registros = new String[7];
+        String sql;
+        sql = "SELECT * FROM CLIENTES WHERE CI_CLI LIKE '" + dato + "%'";
+        model = new DefaultTableModel(null, titulo);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                registros[0] = rs.getString("CI_CLI");
+                registros[1] = rs.getString("NOM1_CLI");
+                registros[2] = rs.getString("NOM2_CLI");
+                registros[3] = rs.getString("APE1_CLI");
+                registros[4] = rs.getString("APE2_CLI");
+                registros[5] = rs.getString("DIR_CLI");
+                registros[6] = rs.getString("TEL_CLI");
+                model.addRow(registros);
+                tablaClientes.setModel(model);
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "La tabla Clientes tiene problemas al cargarse\n" + ex);
+        }
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
