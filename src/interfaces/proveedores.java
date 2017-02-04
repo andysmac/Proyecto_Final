@@ -337,6 +337,7 @@ public class proveedores extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProveedores = new javax.swing.JTable();
+        atras = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -583,6 +584,15 @@ public class proveedores extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        atras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/atras.png"))); // NOI18N
+        atras.setText("ATRAS");
+        atras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atrasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -590,6 +600,7 @@ public class proveedores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,7 +612,7 @@ public class proveedores extends javax.swing.JFrame {
                             .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnIngresarProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -623,6 +634,8 @@ public class proveedores extends javax.swing.JFrame {
                         .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -709,6 +722,19 @@ public class proveedores extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_btCancelarActionPerformed
 
+    private void atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atrasMouseClicked
+        this.dispose();
+        compras r=new compras(acceso.txtusuario.getText());
+        menu.pane1.add(r);
+        r.show();
+        datos();
+        compras.txtCodigoP.setEnabled(true);
+        compras.btnNuevo.setEnabled(false);
+        compras.btnAgregar.setEnabled(true);
+        compras.btnEliminarP.setEnabled(true);
+        compras.btnEditar.setEnabled(false);
+    }//GEN-LAST:event_atrasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -745,6 +771,7 @@ public class proveedores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel atras;
     public static javax.swing.JButton btActualizar;
     public static javax.swing.JButton btCancelar;
     public static javax.swing.JButton btEliminar;
