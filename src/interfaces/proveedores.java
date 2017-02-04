@@ -7,10 +7,12 @@ package interfaces;
 
 import java.awt.Color;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
@@ -49,12 +51,154 @@ public class proveedores extends javax.swing.JFrame {
         } ); 
         }
     
-    public void controlSoloLetras(java.awt.event.KeyEvent evt) {
+     public void limpiar(){
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtRuc.setText("");
+        txtBuscarCedula.setText("");
+    }
+     
+      public void bloquear(){
+        txtCedula.setEnabled(true);
+        txtNombre.setEnabled(true);
+        txtApellido.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        txtRuc.setEnabled(true);
+        btActualizar.setEnabled(false);
+        btEliminar.setEnabled(false);
+        btCancelar.setEnabled(false);        
+     }
+
+      public void desbloquear(){
+        txtNombre.setEnabled(true);
+        txtApellido.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        txtRuc.setEnabled(true);
+        btActualizar.setEnabled(true);
+        btEliminar.setEnabled(true);
+        btCancelar.setEnabled(true); 
+        txtBuscarCedula.setEnabled(true);
+        
+     }
+    
+          public void controlSoloLetras(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
         if (Character.isDigit(c)) {
             evt.consume();
         }
         }
+         
+          private boolean controlarCampos()
+    {
+        boolean ver = true;
+        if(txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty()
+           || txtDireccion.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtRuc.getText().isEmpty())
+        ver= false;
+        return ver;
+    }
+    
+          
+          private String encontrarTxtVacios()
+    {
+        String vac="";
+        if (txtCedula.getText().isEmpty()) {
+            vac=vac.concat("Cedula\n");  
+         }
+          
+         if (txtNombre.getText().isEmpty()) {
+            vac=vac.concat("Nombre\n");  
+         }
+          
+         if (txtApellido.getText().isEmpty()) {
+            vac=vac.concat("Apellido\n");  
+         }
+          
+         if (txtDireccion.getText().isEmpty()) {
+            vac=vac.concat("Dirección\n");  
+         }
+         if (txtTelefono.getText().isEmpty()) {
+             vac=vac.concat("Telefono\n");  
+         }
+         if (txtRuc.getText().isEmpty()) {
+             vac=vac.concat("Ruc Empresa\n");  
+         }
+          return vac;
+    }
+          
+          public void guardarProveedor() {
+        
+        if (txtCedula.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No puede ingresar un proveedor sin cedula");
+            txtCedula.requestFocus();
+        } else {
+            if (txtNombre.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No puede ingresar un proveedor sin nombre");
+                txtNombre.requestFocus();
+            } else {
+                if (txtApellido.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No puede ingresar un proveedor sin apellido");
+                    txtApellido.requestFocus();
+                } else {
+                    if (txtDireccion.getText().trim().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No puede ingresar un proveedor sin direccion");
+                        txtDireccion.requestFocus();
+
+                    } else {
+
+                        if (txtRuc.getText().trim().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "No puede ingresar un proveedor sin RUC");
+                            txtRuc.requestFocus();
+
+                        } else {
+
+                            if (txtTelefono.getText().isEmpty()) {
+                                txtTelefono.setText("NINGUNO");
+                            }
+                            try {
+                                Conexion cc=new Conexion();
+                                Connection cn = cc.conectar();
+                                String Fac_Nombre, Fac_Nombre2, Fac_Apellido, Fac_Apellido2, Fac_Direccion, Fac_Cedula, Fac_Telefono, Fac_RUC;
+                                String sql = "";
+                                Fac_Nombre = txtNombre.getText().split(" ")[0];
+                                Fac_Apellido = txtApellido.getText().split(" ")[0];
+                                Fac_Nombre2 = txtNombre.getText().split(" ")[1];
+                                Fac_Apellido2 = txtApellido.getText().split(" ")[1];
+                                Fac_Direccion = txtDireccion.getText();
+                                Fac_Cedula = txtCedula.getText();
+                                Fac_Telefono = txtTelefono.getText();
+                                Fac_RUC = txtRuc.getText();
+                                sql = "insert into proveedores(ci_pro,nom1_pro,nom2_pro,ape1_pro,ape2_pro,dir_pro,tel_pro,ruc_emr_pr)"
+                                        + "values(?,?,?,?,?,?,?,?)";
+                                PreparedStatement psw = cn.prepareStatement(sql);
+                                psw.setString(1, Fac_Cedula);
+                                psw.setString(2, Fac_Nombre);
+                                psw.setString(3, Fac_Nombre2);
+                                psw.setString(4, Fac_Apellido);
+                                psw.setString(5, Fac_Apellido2);
+                                psw.setString(6, Fac_Direccion);
+                                psw.setString(7, Fac_Telefono);
+                                psw.setString(8, Fac_RUC);
+                                int n = psw.executeUpdate();
+                                if (n > 0) {
+                                    cargarTabla("");
+                                    JOptionPane.showMessageDialog(null, "Se agrego un nuevo proveedor");
+                                }
+
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null, "ERROR: proveedor no ingresado   " + ex);
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
     
     public void cargarTabla(String dato) {
         Conexion cc=new Conexion();
@@ -82,6 +226,55 @@ public class proveedores extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "La tabla Proveedores tiene problemas al cargarse\n" + ex);
                }
+    }
+    
+    public void actualizarProveedor()
+    {
+        Conexion cc=new Conexion();
+        Connection cn = cc.conectar();
+        String [] Nombre, Apellido;
+        Nombre = txtNombre.getText().split(" ");
+        Apellido = txtApellido.getText().split(" ");
+        String sql;
+        sql="update PROVEEDORES set  nom1_pro ='"+Nombre[0]+"',"
+                +"nom2_pro='"+Nombre[1]+"',"
+                +"ape1_pro='"+Apellido[0]+"',"
+                +"ape2_pro='"+Apellido[1]+"',"
+                +"dir_pro='"+txtDireccion.getText()+"',"
+                +"tel_pro='"+txtTelefono.getText()+"',"
+                +"ruc_emr_pr='"+txtRuc.getText()+"'"
+                +"where ci_pro='"+txtCedula.getText()+"'";
+        try {
+            PreparedStatement psd=cn.prepareStatement(sql);
+            int n=psd.executeUpdate();
+            if(n>0){
+                JOptionPane.showMessageDialog(this, "Se actualizo correctamente");
+                cargarTabla("");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar"+ex);
+        }
+    }
+    
+    public void eliminar(){
+        Conexion cc=new Conexion();
+        Connection cn = cc.conectar();
+        if(JOptionPane.showConfirmDialog(new JFrame(),"Esta seguro que desea eliminar el dato","Borra registro",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+        {
+        String sql = "";
+        sql = "delete from proveedores where CI_PRO ='"+txtCedula.getText()+"'";
+        try {
+            PreparedStatement psd=cn.prepareStatement(sql);
+            int n=psd.executeUpdate();
+            if(n>0){
+                JOptionPane.showMessageDialog(null, "Se borro el registro");
+                cargarTabla("");
+                limpiar();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Nose pudo borrar el registro");
+        }
+        }
     }
     private void crearBorde(Color c,JTextField t){
      t.setBorder(BorderFactory.createLineBorder(c)); 
