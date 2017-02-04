@@ -202,13 +202,13 @@ VerificarCedula c = new VerificarCedula();
             JOptionPane.showMessageDialog(null, "No se pudo borrar el registro");
         }
         }}
-     public void datos(){
-        factura.txtCedula.setText(txtCedula.getText());
-        factura.txtNombre.setText(txtNombre.getText());
-        factura.txtApellido.setText(txtApellido.getText());
-        factura.txtDireccion.setText(txtDireccion.getText());
-        factura.txtTelefono.setText(txtTelefono.getText());
-    }
+//     public void datos(){
+//        factura.txtCedula.setText(txtCedula.getText());
+//        factura.txtNombre.setText(txtNombre.getText());
+//        factura.txtApellido.setText(txtApellido.getText());
+//        factura.txtDireccion.setText(txtDireccion.getText());
+//        factura.txtTelefono.setText(txtTelefono.getText());
+//    }
 
    public void controlSoloLetras(java.awt.event.KeyEvent evt) {
         char c = evt.getKeyChar();
@@ -428,7 +428,6 @@ VerificarCedula c = new VerificarCedula();
         });
 
         atras.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         atras.setText("ATRAS");
         atras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -520,11 +519,11 @@ VerificarCedula c = new VerificarCedula();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atrasMouseClicked
-        this.dispose();
-        factura r=new factura();
-        menu.pane1.add(r);
-        r.show();
-        datos();
+//        this.dispose();
+//        factura r=new factura();
+//        menu.pane1.add(r);
+//        r.show();
+//        datos();
     }//GEN-LAST:event_atrasMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
