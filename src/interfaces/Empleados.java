@@ -952,7 +952,7 @@ int limite = 10;
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
  if (Mostrar.isSelected()) {
-            txtClave.setEchoChar((char) 0);
+            txtClave.setsetEchoChar((char) 0);
         } else {
             txtClave.setEchoChar('*');
         }
