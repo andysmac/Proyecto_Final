@@ -548,6 +548,11 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         btNuevo.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/EMPLO.png"))); // NOI18N
         btNuevo.setText("NUEVO");
+        btNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -647,6 +652,15 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
 c.validacion(evt);
 // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaFocusLost
+
+    private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
+     limpiar();
+    txtBuscarCed.setText("");
+    desbloquearcampos();
+    btActualizar.setEnabled(false);
+    btEliminar.setEnabled(false);
+    // TODO add your handling code here:
+    }//GEN-LAST:event_btNuevoActionPerformed
 
     /**
      * @param args the command line arguments
