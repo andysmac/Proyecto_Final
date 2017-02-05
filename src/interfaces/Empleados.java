@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -120,6 +121,34 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         btEliminar.setEnabled(true);
         btCancelar.setEnabled(true);
      }
+   
+   
+   public void limpiar() {
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtFecha.setDate(null);
+        cbCargo.setSelectedItem(null);
+        cbEstCiv.setSelectedItem(null);
+        cbGenero.setSelectedItem(null);
+        txtMail.setText("");
+        txtClave.setText("");
+    }
+   
+   public void controlSoloNumeros(java.awt.event.KeyEvent evt) {
+        int limite = 10;
+        char c = evt.getKeyChar(); //Obtiene caracteres desde teclado, coge la tecla que digito Caracter por caracter
+        if ((c < '0' || c > '9') && (c != '.'))//Valida que el caracter solo este entre 0 y 9, ademas acepta el punto
+        {
+            evt.consume(); //Metodo consume.- Que las teclas que presione fuera de rango no se permitan escribir
+        }
+        if (txtTelefono.getText().length() == limite) //Valida el numero de caracteres a ingresar
+        {
+            evt.setKeyChar((char) KeyEvent.VK_CLEAR); //Borra caracteres fueras del limite
+        }
+    }
    
    
     
@@ -515,7 +544,11 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Empleados().setVisible(true);
+                try {
+                    new Empleados().setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
