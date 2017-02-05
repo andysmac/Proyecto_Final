@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -204,7 +205,101 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             JOptionPane.showMessageDialog(null, "La tabla Empleados tiene problemas al cargarse\n" + e);
         }
     }
+     private String camposVacios() {
+        String vac = "";
+        if (txtCedula.getText().isEmpty()) {
+            vac = vac.concat("Cedula\n");
+            txtCedula.requestFocus();
+        }
+
+        if (txtNombre.getText().isEmpty()) {
+            vac = vac.concat("Nombre\n");
+            txtNombre.requestFocus();
+        }
+
+        if (txtApellido.getText().isEmpty()) {
+            vac = vac.concat("Apellido\n");
+            txtApellido.requestFocus();
+        }
+        if (cbCargo.getSelectedItem() == null) {
+            vac = vac.concat("Cargo\n");
+//            cbCargo.requestFocus();
+        }
+        if (txtFecha.getDate() == null) {
+            vac = vac.concat("Fecha de Nacimiento\n");
+//            cbFecha.requestFocus();
+        }
+        if (txtDireccion.getText().isEmpty()) {
+            vac = vac.concat("Direccion\n");
+//            cbFecha.requestFocus();
+        }
+        if (cbEstCiv.getSelectedItem() == null) {
+            vac = vac.concat("EstadoCivil\n");
+//            cbCargo.requestFocus();
+        }
+        if (cbGenero.getSelectedItem() == null) {
+            vac = vac.concat("Genero\n");
+//            cbCargo.requestFocus();
+        }
+        if (txtClave.getText().isEmpty()) {
+            vac = vac.concat("Clave\n");
+//            txtClave.requestFocus();
+        }
+
+        return vac;
+    }
      
+      public void insertar(boolean b) {
+        //Conexion cc=new Conexion();
+       // Connection cn = cc.conectar();
+        if (b == true) {
+            PreparedStatement pst;
+            String fecha,passen=null;
+            String sql;
+            String suel;
+            String[] Nombre, Apellido;
+            Nombre = txtNombre.getText().split(" ");
+            Apellido = txtApellido.getText().split(" ");
+            fecha = f.format(txtFecha.getDate());
+            String password=txtClave.getText();
+            ////
+            try {
+                passen=Metodos.encrypt(key, iv, password);
+            } catch (Exception ex) {
+               JOptionPane.showMessageDialog(null, ex);
+            }
+            ////
+            JOptionPane.showMessageDialog(null, passen);
+            try {
+                pst = cn.prepareStatement("INSERT INTO empleados(ci_emp, nom1_emp, nom2_emp, ape1_emp,ape2_emp, car_emp, fec_nac_emp, dir_emp, tel_emp,"
+                        + " e_mail_emp, est_civ_emp, genero,clave_emp)"
+                        + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+                pst.setString(1, txtCedula.getText().toString());
+                pst.setString(2, Nombre[0]);
+                pst.setString(3, Nombre[1]);
+                pst.setString(4, Apellido[0]);
+                pst.setString(5, Apellido[1]);
+                pst.setString(6, cbCargo.getSelectedItem().toString());
+                pst.setString(7, fecha);
+                pst.setString(8, txtDireccion.getText().toString());
+                pst.setString(9, txtTelefono.getText().toString());
+                pst.setString(10, txtMail.getText().toString());
+                pst.setString(11, cbEstCiv.getSelectedItem().toString());
+                pst.setString(12, cbGenero.getSelectedItem().toString());
+                pst.setString(13, passen);
+                int i = pst.executeUpdate();
+                if (i > 0) {
+                    cargarTablaEmpleados("");
+                    JOptionPane.showMessageDialog(null, "EL EMPLEADO HA SIDO REGISTRADO");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No se ha podido guardar \n" + e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese datos en los siguientes campos:\n" + camposVacios());
+        }
+    }
      public void actualizarEmpleado() {
              String sql, dir,passen=null;
         String[] Nombre, Apellido;
@@ -263,6 +358,25 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             ver = false;
         }
         return ver;
+    }
+      
+      public void borrar() {
+       // Conexion cc=new Conexion();
+        //Connection cn = cc.conectar();
+        if (JOptionPane.showConfirmDialog(new JInternalFrame(), "Esta seguro que desea eliminar el dato", "Borra registro", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            String sql = "";
+            sql = "delete from empleados where ci_emp ='" + txtCedula.getText() + "'";
+            try {
+                PreparedStatement psd = cn.prepareStatement(sql);
+                int n = psd.executeUpdate();
+                if (n > 0) {
+                    JOptionPane.showMessageDialog(null, "Se borro el registro");
+                    cargarTablaEmpleados("");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Nose pudo borrar el registro");
+            }
+        }
     }
      
     @SuppressWarnings("unchecked")
