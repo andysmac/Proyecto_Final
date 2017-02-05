@@ -84,6 +84,25 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             }
         });
     }
+    
+   public void bloquearcampos() {
+        txtCedula.setEnabled(false);
+        txtNombre.setEnabled(false);
+        txtApellido.setEnabled(false);
+        cbCargo.setEnabled(false);
+        txtFecha.setEnabled(false);
+        txtDireccion.setEnabled(false);
+        txtTelefono.setEnabled(false);
+        txtMail.setEnabled(false);
+        cbEstCiv.setEnabled(false);
+        cbGenero.setEnabled(false);
+        txtClave.setEnabled(false);
+        btGuardarU.setEnabled(false);
+        btActualizar.setEnabled(false);
+        btEliminar.setEnabled(false);
+        btCancelar.setEnabled(false);
+    } 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
