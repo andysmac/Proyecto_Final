@@ -5,12 +5,19 @@
  */
 package interfaces;
 
+import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author AndresSebastian
  */
 public class Empleados extends javax.swing.JFrame {
-
+interfaces.VerificarCedula c = new interfaces.VerificarCedula();
+    DefaultTableModel model;
+    SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+    private String id;
+    private String descripcion;
     /**
      * Creates new form Empleados
      */
