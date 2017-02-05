@@ -150,8 +150,20 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         }
     }
    
-   
+    public void controlSoloLetras(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }
     
+    
+     public void controlDireccion(java.awt.event.KeyEvent evt) {
+           char c=evt.getKeyChar();
+            if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9') && c != '-') {
+                evt.consume();
+            }
+       }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
