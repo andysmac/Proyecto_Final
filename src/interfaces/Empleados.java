@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -170,7 +171,22 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             }
        }
      
-     
+      public void cargarComboEstadoCivil() {
+        String[] Nombre, Apellido;
+        try {
+            String sql = "";
+            sql = "select * from cargos";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                id = rs.getString("nom_car");
+                descripcion = rs.getString("suel_emp");
+                cbCargo.addItem(id);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo cargar el combo");
+        }
+      }
      
      public void cargarTablaEmpleados(String Dato) {
        // Conexion cc=new Conexion();
