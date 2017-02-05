@@ -244,6 +244,26 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             JOptionPane.showMessageDialog(this, "No se pudo actualizar" + ex);
         }
     }
+      private boolean control() {
+        boolean ver = true;
+        if (txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty()
+                || txtDireccion.getText().isEmpty() || cbCargo.getSelectedItem() == null || cbEstCiv.getSelectedItem() == null
+                || cbGenero.getSelectedItem() == null || txtFecha.getDate() == null || txtClave.getText().isEmpty()) {
+            ver = false;
+        }
+        return ver;
+    }
+      
+      
+      private boolean control1() {
+           boolean ver = true;
+        if (txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty()
+                || txtDireccion.getText().isEmpty() || cbCargo.getSelectedItem() == null || cbEstCiv.getSelectedItem() == null
+                || cbGenero.getSelectedItem() == null || txtFecha.getDate() == null ) {
+            ver = false;
+        }
+        return ver;
+    }
      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -260,7 +280,7 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtClave = new javax.swing.JTextField();
-        cbCargo = new javax.swing.JComboBox<String>();
+        cbCargo = new javax.swing.JComboBox<>();
         Mostrar = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -273,8 +293,8 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         txtTelefono = new javax.swing.JTextField();
         txtMail = new javax.swing.JTextField();
         txtFecha = new com.toedter.calendar.JDateChooser();
-        cbEstCiv = new javax.swing.JComboBox<String>();
-        cbGenero = new javax.swing.JComboBox<String>();
+        cbEstCiv = new javax.swing.JComboBox<>();
+        cbGenero = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtBuscarCed = new javax.swing.JTextField();
@@ -308,6 +328,17 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel5.setText("CLAVE");
+
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusLost(evt);
+            }
+        });
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
 
         txtClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -488,7 +519,7 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,6 +637,16 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClaveActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+ c.controlCaracteres(evt);
+ // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+c.validacion(evt);
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaFocusLost
 
     /**
      * @param args the command line arguments
