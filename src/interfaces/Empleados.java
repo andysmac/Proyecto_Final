@@ -6,6 +6,10 @@
 package interfaces;
 
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -164,6 +168,83 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
                 evt.consume();
             }
        }
+     
+     
+     
+     public void cargarTablaEmpleados(String Dato) {
+       // Conexion cc=new Conexion();
+       // Connection cn = cc.conectar();
+        String[] titulos = {"CEDULA", "NOMBRE 1", "NOMBRE 2", "APELLIDO 1", "APELLIDO 2", "CARGO", "FECHA", "DIRECCIÓN", "TELEFONO", "E_MAIL", "ESTADO CIVIL", "GENERO","CLAVE"};
+        String[] registros = new String[13]; 
+        String suel;
+        String sql;
+        sql = "Select e.*, c.suel_emp from empleados e,cargos c where e.car_emp=c.nom_car AND e.ci_emp  LIKE '" + Dato + "%'";
+        model = new DefaultTableModel(null, titulos);
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                registros[0] = rs.getString("ci_emp");
+                registros[1] = rs.getString("nom1_emp");
+                registros[2] = rs.getString("nom2_emp");
+                registros[3] = rs.getString("ape1_emp");
+                registros[4] = rs.getString("ape2_emp");
+                registros[5] = rs.getString("car_emp");
+                registros[6] = rs.getString("fec_nac_emp");
+                registros[7] = rs.getString("dir_emp");
+                registros[8] = rs.getString("tel_emp");
+                registros[9] = rs.getString("e_mail_emp");
+                registros[10] = rs.getString("est_civ_emp");
+                registros[11] = rs.getString("genero");
+                registros[12] = rs.getString("clave_emp");
+                model.addRow(registros);
+                tbEmpleados.setModel(model);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "La tabla Empleados tiene problemas al cargarse\n" + e);
+        }
+    }
+     
+     public void actualizarEmpleado() {
+             String sql, dir,passen=null;
+        String[] Nombre, Apellido;
+         //  Conexion cc=new Conexion();
+       // Connection cn = cc.conectar();
+            Nombre = txtNombre.getText().split(" ");
+            Apellido = txtApellido.getText().split(" ");
+            String password = txtClave.getText();
+           ////
+            try {
+                passen=interfaces.Metodos.encrypt(key, iv, password);
+            } catch (Exception ex) {
+               
+            }
+             sql = "update empleados set nom1_emp ='" + Nombre[0] 
+                + "',nom2_emp='" + Nombre[1] 
+                + "',ape1_emp='" + Apellido[0] 
+                + "',ape2_emp='" + Apellido[1] 
+                + "',car_emp='" + cbCargo.getSelectedItem()
+                + "',fec_nac_emp='"+f.format(txtFecha.getDate())
+                + "',dir_emp='" + txtDireccion.getText() 
+                + "',tel_emp='" + txtTelefono.getText() 
+                + "',e_mail_emp='" + txtMail.getText() 
+                + "',est_civ_emp='" + cbEstCiv.getSelectedItem() 
+                + "',genero='" + cbGenero.getSelectedItem() 
+                + "',clave_emp='" + passen 
+                + "'where ci_emp='" + txtCedula.getText() + "'";
+        try {
+            PreparedStatement psd = cn.prepareStatement(sql);
+            int n = psd.executeUpdate();
+            if (n > 0) {
+                //JOptionPane.showMessageDialog(this, "Se actualizo correctamente");
+                cargarTablaEmpleados("");
+                limpiar();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar" + ex);
+        }
+    }
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -605,4 +686,6 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+interfaces.Conexion cc=new interfaces.Conexion();
+     Connection cn = cc.conectar();
 }
