@@ -606,6 +606,17 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         jLabel6.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel6.setText("CEDULA");
 
+        txtBuscarCed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarCedActionPerformed(evt);
+            }
+        });
+        txtBuscarCed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarCedKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -670,10 +681,20 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         btActualizar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1 (1).png"))); // NOI18N
         btActualizar.setText("ACTUALIZAR");
+        btActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarActionPerformed(evt);
+            }
+        });
 
         btGuardarU.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btGuardarU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/guardar.png"))); // NOI18N
         btGuardarU.setText("GUARDAR");
+        btGuardarU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGuardarUActionPerformed(evt);
+            }
+        });
 
         btNuevo.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/EMPLO.png"))); // NOI18N
@@ -791,6 +812,27 @@ c.validacion(evt);
     btEliminar.setEnabled(false);
     // TODO add your handling code here:
     }//GEN-LAST:event_btNuevoActionPerformed
+
+    private void btGuardarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarUActionPerformed
+       insertar(control());
+    cargarTablaEmpleados("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btGuardarUActionPerformed
+
+    private void txtBuscarCedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarCedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarCedActionPerformed
+
+    private void txtBuscarCedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCedKeyReleased
+insertar(control());
+    cargarTablaEmpleados("");
+    // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarCedKeyReleased
+
+    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+actualizarEmpleado();
+// TODO add your handling code here:
+    }//GEN-LAST:event_btActualizarActionPerformed
 
     /**
      * @param args the command line arguments
