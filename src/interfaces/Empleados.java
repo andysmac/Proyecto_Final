@@ -102,6 +102,26 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         btEliminar.setEnabled(false);
         btCancelar.setEnabled(false);
     } 
+   
+   public void desbloquearcampos() {
+        txtCedula.setEnabled(true);
+        txtNombre.setEnabled(true);
+        txtApellido.setEnabled(true);
+        cbCargo.setEnabled(true);
+        txtFecha.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        txtMail.setEnabled(true);
+        cbEstCiv.setEnabled(true);
+        cbGenero.setEnabled(true);
+        txtClave.setEnabled(true);
+        btGuardarU.setEnabled(true);
+        btActualizar.setEnabled(true);
+        btEliminar.setEnabled(true);
+        btCancelar.setEnabled(true);
+     }
+   
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
