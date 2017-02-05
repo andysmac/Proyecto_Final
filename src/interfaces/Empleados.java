@@ -19,13 +19,15 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author AndresSebastian
  */
-public class Empleados extends javax.swing.JFrame {
+public class Empleados extends javax.swing.JInternalFrame {
 interfaces.VerificarCedula c = new interfaces.VerificarCedula();
     DefaultTableModel model;
     SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
@@ -495,6 +497,11 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         });
 
         Mostrar.setText("Mostrar Clave");
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -566,9 +573,21 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         jLabel12.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel12.setText("GENERO");
 
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
+
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
+            }
+        });
+
+        txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMailKeyReleased(evt);
             }
         });
 
@@ -636,6 +655,9 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             }
         });
         txtBuscarCed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarCedKeyTyped(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarCedKeyReleased(evt);
             }
@@ -706,6 +728,11 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         btCancelar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1467088618_Cancel.png"))); // NOI18N
         btCancelar.setText("CANCELAR");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btActualizar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         btActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1 (1).png"))); // NOI18N
@@ -893,6 +920,44 @@ controlSoloLetras(evt);
 controlSoloNumeros(evt);
 // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+controlDireccion(evt);
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtMailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyReleased
+ txtMail.setText((txtMail.getText().toLowerCase()));
+ // TODO add your handling code here:
+    }//GEN-LAST:event_txtMailKeyReleased
+
+    private void txtBuscarCedKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCedKeyTyped
+int limite = 10;
+    char c = evt.getKeyChar(); //Obtiene caracteres desde teclado, coge la tecla que digito Caracter por caracter
+    if ((c < '0' || c > '9') && (c != '.'))//Valida que el caracter solo este entre 0 y 9, ademas acepta el punto
+    {
+        evt.consume(); //Metodo consume.- Que las teclas que presione fuera de rango no se permitan escribir
+    }
+    if (txtBuscarCed.getText().length() == limite) //Valida el numero de caracteres a ingresar
+    {
+        evt.setKeyChar((char) KeyEvent.VK_CLEAR); //Borra caracteres fueras del limite
+    }      
+    // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarCedKeyTyped
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+ limpiar();
+ // TODO add your handling code here:
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+ if (Mostrar.isSelected()) {
+            txtClave.setEchoChar((char) 0);
+        } else {
+            txtClave.setEchoChar('*');
+        }
+ // TODO add your handling code here:
+    }//GEN-LAST:event_MostrarActionPerformed
 
     /**
      * @param args the command line arguments
