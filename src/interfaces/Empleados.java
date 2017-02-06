@@ -411,9 +411,9 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-        txtClave = new javax.swing.JTextField();
         cbCargo = new javax.swing.JComboBox<>();
         Mostrar = new javax.swing.JCheckBox();
+        txtClave = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -440,7 +440,7 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         btGuardarU = new javax.swing.JButton();
         btNuevo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setVisible(true);
 
@@ -490,12 +490,6 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
             }
         });
 
-        txtClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClaveActionPerformed(evt);
-            }
-        });
-
         Mostrar.setText("Mostrar Clave");
         Mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -519,10 +513,10 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Mostrar)
                     .addComponent(txtCedula)
-                    .addComponent(txtClave)
                     .addComponent(txtApellido)
                     .addComponent(txtNombre)
-                    .addComponent(cbCargo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 240, Short.MAX_VALUE))
+                    .addComponent(cbCargo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 240, Short.MAX_VALUE)
+                    .addComponent(txtClave))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -846,10 +840,6 @@ interfaces.VerificarCedula c = new interfaces.VerificarCedula();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtClaveActionPerformed
-
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
  c.controlCaracteres(evt);
  // TODO add your handling code here:
@@ -952,7 +942,7 @@ int limite = 10;
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
  if (Mostrar.isSelected()) {
-            txtClave.setsetEchoChar((char) 0);
+            txtClave.setEchoChar((char) 0);
         } else {
             txtClave.setEchoChar('*');
         }
@@ -1031,7 +1021,7 @@ int limite = 10;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtBuscarCed;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtClave;
+    private javax.swing.JPasswordField txtClave;
     private javax.swing.JTextField txtDireccion;
     private com.toedter.calendar.JDateChooser txtFecha;
     private javax.swing.JTextField txtMail;
