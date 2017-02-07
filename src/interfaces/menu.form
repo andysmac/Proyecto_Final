@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuInicio">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icon/servicios.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SERVICIOS"/>
           </Properties>
           <AuxValues>
@@ -14,6 +17,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="miVentas">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/shop.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="VENTAS"/>
               </Properties>
               <Events>
@@ -25,6 +31,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="miCompras">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/comprar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="COMPRAS"/>
               </Properties>
               <Events>
@@ -38,6 +47,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuUsuarios">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icon/bd.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="GESTION DE BASE"/>
           </Properties>
           <AuxValues>
@@ -46,6 +58,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="miUsuarios">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/usuarios.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios Sistema"/>
               </Properties>
               <Events>
@@ -57,13 +72,56 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icon/reports.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="REPORTES"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/empleados.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="EMPLEADOS"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/clientes.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="CLIENTES"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/productos.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="PRODUCTOS"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icon/closeseeion.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="CERRAR SESION"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/cambiaruser.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cambiar Sesion"/>
               </Properties>
               <Events>
@@ -72,6 +130,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icon/salir.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
@@ -106,12 +167,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pane1" alignment="0" pref="400" max="32767" attributes="0"/>
+          <Component id="pane1" alignment="0" pref="621" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="pane1" alignment="0" pref="279" max="32767" attributes="0"/>
+          <Component id="pane1" alignment="0" pref="357" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>

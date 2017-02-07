@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="da8274c2-f7dc-4ab5-9a7c-5c749f01c606">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     CLIENTES."CI_CLI" AS CLIENTES_CI_CLI,
+     CLIENTES."NOM1_CLI" AS CLIENTES_NOM1_CLI,
+     CLIENTES."NOM2_CLI" AS CLIENTES_NOM2_CLI,
+     CLIENTES."APE1_CLI" AS CLIENTES_APE1_CLI,
+     CLIENTES."APE2_CLI" AS CLIENTES_APE2_CLI,
+     CLIENTES."DIR_CLI" AS CLIENTES_DIR_CLI,
+     CLIENTES."TEL_CLI" AS CLIENTES_TEL_CLI
+FROM
+     "FACTURA"."CLIENTES" CLIENTES]]>
+	</queryString>
+	<field name="CLIENTES_CI_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_NOM1_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_NOM2_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_APE1_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_APE2_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_DIR_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_TEL_CLI" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="15" width="195" height="49" uuid="818c844e-bc88-41a4-bdc0-bc8e149dd8dd"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[CLIENTES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="1" width="53" height="20" uuid="9e06368f-843e-40c3-874f-7f8dd2eb091b"/>
+				<text><![CDATA[CEDULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="1" width="53" height="20" uuid="594c3725-5598-416a-8b7f-94df07831a45"/>
+				<text><![CDATA[NOMBRE1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="1" width="53" height="20" uuid="fba06de2-2fba-4056-8b86-2b0a32eae8ff"/>
+				<text><![CDATA[NOMBRE2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="1" width="58" height="20" uuid="4943d12b-d4e0-4016-a5d3-65e87ab9ea86"/>
+				<text><![CDATA[APELLIDO1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="0" width="63" height="20" uuid="9c8cf519-4dc7-4749-b973-6fb572f7d0b2"/>
+				<text><![CDATA[APELLIDO2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="0" width="60" height="20" uuid="054ad04b-fd67-4b4a-92cf-7e3d91da0ac4"/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="0" width="57" height="20" uuid="185536e0-f819-4c24-8f71-c08ac6ad45d7"/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="11" width="53" height="20" uuid="f8738a62-39ae-40b6-bfdc-cb50c08ffb98"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_CI_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="11" width="53" height="20" uuid="7c05c21a-16fb-4f20-9f5b-dcc6dc05bfc7"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_NOM1_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="11" width="53" height="20" uuid="9a9bc5ca-114a-45a3-8c02-89bdf087623d"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_NOM2_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="12" width="58" height="20" uuid="4fcf4e0a-81dc-4507-abac-0606ead19dcb"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_APE1_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="11" width="63" height="20" uuid="59204044-40bc-44a1-b005-63f78f00afd4"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_APE2_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="3" width="60" height="20" uuid="be6eabc6-b4ac-49b3-af69-4e6511d23f1c"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_DIR_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="478" y="1" width="57" height="20" uuid="784a6c2e-363c-49bd-972e-38841871a375"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_TEL_CLI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
