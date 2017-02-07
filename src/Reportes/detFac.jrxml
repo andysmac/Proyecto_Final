@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa9faa27-2017-411c-9fee-8650a30ff8bc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="numFac" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     DET_FACTURAS."COD_PROD_P" AS DET_FACTURAS_COD_PROD_P,
+     DET_FACTURAS."CAN_PROD" AS DET_FACTURAS_CAN_PROD,
+     PRODUCTOS."NOM_PROD" AS PRODUCTOS_NOM_PROD,
+     DET_FACTURAS."NUM_FAC_P" AS DET_FACTURAS_NUM_FAC_P,
+     PRODUCTOS."PREXUV_PROD" AS PRODUCTOS_PREXUV_PROD,
+DET_FACTURAS."CAN_PROD" * PRODUCTOS."PREXUV_PROD" AS SUBTOTAL
+FROM
+     "FACTURA"."PRODUCTOS" PRODUCTOS INNER JOIN "FACTURA"."DET_FACTURAS" DET_FACTURAS ON PRODUCTOS."COD_PROD" = DET_FACTURAS."COD_PROD_P"
+WHERE
+DET_FACTURAS."NUM_FAC_P"=$P{numFac}]]>
+	</queryString>
+	<field name="DET_FACTURAS_COD_PROD_P" class="java.lang.String"/>
+	<field name="DET_FACTURAS_CAN_PROD" class="java.math.BigDecimal"/>
+	<field name="PRODUCTOS_NOM_PROD" class="java.lang.String"/>
+	<field name="DET_FACTURAS_NUM_FAC_P" class="java.math.BigDecimal"/>
+	<field name="PRODUCTOS_PREXUV_PROD" class="java.math.BigDecimal"/>
+	<field name="SUBTOTAL" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="799474ac-1a9b-45e8-be30-aa4080accc66"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="69" height="15" uuid="8258d0b2-695d-4701-b8c5-e7b0074c4d0c"/>
+				<text><![CDATA[Cant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="69" y="19" width="264" height="15" uuid="be8853fb-0c59-47c4-a8d4-2bb83b5e12c4"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="20" width="111" height="15" uuid="b539e8f9-e875-422d-9f28-0d2f432307c7"/>
+				<text><![CDATA[P/U]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="20" width="111" height="14" forecolor="#666666" uuid="abb8bef6-4d58-4243-ab56-25d1926c7c7e"/>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="92da993a-668a-42a9-9a3f-c3050585ee22"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="1" width="69" height="15" uuid="b8603ac4-cbb9-4d07-af2a-7ee2f3fefe9e"/>
+				<textFieldExpression><![CDATA[$F{DET_FACTURAS_CAN_PROD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="69" y="0" width="264" height="15" uuid="246c620a-f0b3-4ee2-909c-4bc6e833e345"/>
+				<textFieldExpression><![CDATA[$F{PRODUCTOS_NOM_PROD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="333" y="1" width="111" height="15" uuid="18d056f4-12e6-4498-8c61-f424903650e1"/>
+				<textFieldExpression><![CDATA[$F{PRODUCTOS_PREXUV_PROD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="444" y="1" width="111" height="15" uuid="fa911473-e360-4884-92c9-bf2b9bda90bf"/>
+				<textFieldExpression><![CDATA[$F{SUBTOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

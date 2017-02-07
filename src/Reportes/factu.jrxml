@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fbda8a07-e98b-4f56-bff3-8e1128f68b95">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="numFac" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Ricardo\\Desktop\\ComoSea\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     FACTURAS."NUM_FAC" AS FACTURAS_NUM_FAC,
+     FACTURAS."FEC_FAC" AS FACTURAS_FEC_FAC,
+     FACTURAS."CI_CLI_FAC" AS FACTURAS_CI_CLI_FAC,
+     FACTURAS."CI_EMP_FAC" AS FACTURAS_CI_EMP_FAC,
+     FACTURAS."SUB_TOT_FAC" AS FACTURAS_SUB_TOT_FAC,
+     FACTURAS."IVA_FAC" AS FACTURAS_IVA_FAC,
+     FACTURAS."TOTAL_PAGAR" AS FACTURAS_TOTAL_PAGAR,
+     CLIENTES."CI_CLI" AS CLIENTES_CI_CLI,
+     CLIENTES."NOM1_CLI" AS CLIENTES_NOM1_CLI,
+     CLIENTES."APE1_CLI" AS CLIENTES_APE1_CLI,
+     CLIENTES."DIR_CLI" AS CLIENTES_DIR_CLI,
+     CLIENTES."TEL_CLI" AS CLIENTES_TEL_CLI
+FROM
+     "FACTURA"."CLIENTES" CLIENTES INNER JOIN "FACTURA"."FACTURAS" FACTURAS ON CLIENTES."CI_CLI" = FACTURAS."CI_CLI_FAC"
+WHERE 
+FACTURAS."NUM_FAC"=$P{numFac}]]>
+	</queryString>
+	<field name="FACTURAS_NUM_FAC" class="java.math.BigDecimal"/>
+	<field name="FACTURAS_FEC_FAC" class="java.lang.String"/>
+	<field name="FACTURAS_CI_CLI_FAC" class="java.lang.String"/>
+	<field name="FACTURAS_CI_EMP_FAC" class="java.lang.String"/>
+	<field name="FACTURAS_SUB_TOT_FAC" class="java.math.BigDecimal"/>
+	<field name="FACTURAS_IVA_FAC" class="java.math.BigDecimal"/>
+	<field name="FACTURAS_TOTAL_PAGAR" class="java.math.BigDecimal"/>
+	<field name="CLIENTES_CI_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_NOM1_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_APE1_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_DIR_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_TEL_CLI" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="157" height="33" uuid="208f623b-b4c7-40a8-a9bd-806b596d5415"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="434" y="0" width="46" height="15" uuid="3c19e578-07ae-495a-807b-e9b5a897dc2b"/>
+				<text><![CDATA[N.-]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="480" y="0" width="65" height="15" uuid="70d2dab3-adf2-429f-ba5c-111727d962b4"/>
+				<textFieldExpression><![CDATA[$F{FACTURAS_NUM_FAC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="434" y="15" width="46" height="15" uuid="43e87b70-2bff-4250-aff9-ca17a98b50c6"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="480" y="15" width="65" height="15" uuid="472aabf1-9321-43c7-a2fa-a9b3e6bec79b"/>
+				<textFieldExpression><![CDATA[$F{FACTURAS_FEC_FAC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="4" width="46" height="15" uuid="bc2d0284-8b7b-48e4-9858-76516252285d"/>
+				<text><![CDATA[CI.-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="21" width="60" height="15" uuid="416556a3-e10f-4cee-acb3-3f2b9e9a71e2"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="217" y="4" width="46" height="15" uuid="6b5427d7-5986-4937-a719-a91d88b1e613"/>
+				<text><![CDATA[Direc.-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="217" y="22" width="46" height="15" uuid="c8dd0460-8494-478d-9475-795dce0c079a"/>
+				<text><![CDATA[Telf.-]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="46" y="4" width="46" height="15" uuid="b637fd16-83a2-4771-9bd2-284624179bb8"/>
+				<textFieldExpression><![CDATA[$F{FACTURAS_CI_CLI_FAC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="60" y="21" width="72" height="15" uuid="6904a0a7-dda3-4827-91eb-6d0ccadfc0fe"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_NOM1_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="142" y="21" width="74" height="15" uuid="21795dd3-0970-467a-a8ba-72b933b6a970"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_APE1_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="263" y="4" width="138" height="15" uuid="53f33437-f2fd-4266-822c-6bbe7cc3a148"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_DIR_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="263" y="22" width="138" height="15" uuid="e52dc5ec-a29a-4518-abfe-c636e5be1be3"/>
+				<textFieldExpression><![CDATA[$F{CLIENTES_TEL_CLI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="109">
+			<staticText>
+				<reportElement style="Column header" x="411" y="72" width="46" height="15" uuid="dd4c0e0e-6a83-44c6-8078-8dccc2d46041"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="480" y="72" width="46" height="15" uuid="5d0f0859-380b-4f37-bc09-0c858608fae3"/>
+				<textFieldExpression><![CDATA[$F{FACTURAS_TOTAL_PAGAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="401" y="24" width="56" height="15" uuid="e9d755b2-e6df-490d-8826-c8db4bfcfaf9"/>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="480" y="24" width="46" height="15" uuid="6978bee2-f523-475e-bbbf-81e45b6903c0"/>
+				<textFieldExpression><![CDATA[$F{FACTURAS_SUB_TOT_FAC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="411" y="46" width="46" height="15" uuid="eba1bd87-e000-4d3c-ab0e-bfafe03d4cf9"/>
+				<text><![CDATA[IVA 14%]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="480" y="46" width="46" height="15" uuid="cd07db78-2f6f-48ba-817f-fffeb3d29d6d"/>
+				<textFieldExpression><![CDATA[$F{FACTURAS_IVA_FAC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="7496b492-caed-4854-9f05-065f7bb16b10"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="8bd38f3e-1c28-4471-be6b-c61818d3e58b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="8a41771d-0c38-4df5-9913-5ef8d3eb9d3a"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="197" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="197" uuid="f887439b-d30a-4e4b-92cd-dbd9324cdb59"/>
+				<subreportParameter name="numFac">
+					<subreportParameterExpression><![CDATA[$P{numFac}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "detFac.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

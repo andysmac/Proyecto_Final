@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="34"/>
+	<style name="Title" isDefault="false" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" isDefault="false" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" isDefault="false" fontName="Arial" fontSize="12"/>
+	<parameter name="numero" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Andres\\Downloads\\PROYECTO FINAL\\Facturacion\\Facturacion\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     CLIENTES."CI_CLI" AS CLIENTES_CI_CLI,
+     CLIENTES."NOM1_CLI" AS CLIENTES_NOM1_CLI,
+     CLIENTES."NOM2_CLI" AS CLIENTES_NOM2_CLI,
+     CLIENTES."APE1_CLI" AS CLIENTES_APE1_CLI,
+     CLIENTES."APE2_CLI" AS CLIENTES_APE2_CLI,
+     CLIENTES."DIR_CLI" AS CLIENTES_DIR_CLI,
+     CLIENTES."TEL_CLI" AS CLIENTES_TEL_CLI,
+     FACTURAS."NUM_FAC" AS FACTURAS_NUM_FAC,
+     FACTURAS."FEC_FAC" AS FACTURAS_FEC_FAC,
+     FACTURAS."SUB_TOT_FAC" AS FACTURAS_SUB_TOT_FAC,
+     FACTURAS."IVA_FAC" AS FACTURAS_IVA_FAC,
+     FACTURAS."TOTAL_PAGAR" AS FACTURAS_TOTAL_PAGAR,
+     FACTURAS."CI_EMP_FAC" AS FACTURAS_CI_EMP_FAC
+FROM
+     "SUPER"."CLIENTES" CLIENTES INNER JOIN "SUPER"."FACTURAS" FACTURAS ON CLIENTES."CI_CLI" = FACTURAS."CI_CLI_FAC"
+WHERE
+     FACTURAS."NUM_FAC" = $P{numero}]]>
+	</queryString>
+	<field name="CLIENTES_CI_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_NOM1_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_NOM2_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_APE1_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_APE2_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_DIR_CLI" class="java.lang.String"/>
+	<field name="CLIENTES_TEL_CLI" class="java.lang.String"/>
+	<field name="FACTURAS_NUM_FAC" class="java.math.BigDecimal"/>
+	<field name="FACTURAS_FEC_FAC" class="java.lang.String"/>
+	<field name="FACTURAS_SUB_TOT_FAC" class="java.math.BigDecimal"/>
+	<field name="FACTURAS_IVA_FAC" class="java.math.BigDecimal"/>
+	<field name="FACTURAS_TOTAL_PAGAR" class="java.math.BigDecimal"/>
+	<field name="FACTURAS_CI_EMP_FAC" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="39" y="21" width="491" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[SUPERMARKET "LA CAJA NEGRA"]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="440" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="167" y="72" width="102" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CLIENTES_CI_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="167" y="99" width="60" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CLIENTES_NOM1_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="238" y="99" width="62" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CLIENTES_NOM2_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="306" y="99" width="63" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CLIENTES_APE1_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="381" y="99" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CLIENTES_APE2_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="167" y="126" width="202" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CLIENTES_DIR_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="170" y="152" width="99" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CLIENTES_TEL_CLI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="170" y="16" width="34" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FACTURAS_NUM_FAC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="170" y="47" width="99" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FACTURAS_FEC_FAC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="508" y="361" width="34" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FACTURAS_SUB_TOT_FAC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="508" y="388" width="34" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FACTURAS_IVA_FAC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="508" y="415" width="34" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FACTURAS_TOTAL_PAGAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="167" y="179" width="102" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{FACTURAS_CI_EMP_FAC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="450" y="415" width="47" height="15"/>
+				<textElement/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="463" y="388" width="34" height="15"/>
+				<textElement/>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="420" y="361" width="77" height="15"/>
+				<textElement/>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="179" width="136" height="15"/>
+				<textElement/>
+				<text><![CDATA[CAJERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="72" width="136" height="15"/>
+				<textElement/>
+				<text><![CDATA[CEDULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="99" width="136" height="15"/>
+				<textElement/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="126" width="136" height="15"/>
+				<textElement/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="47" width="136" height="15"/>
+				<textElement/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="16" width="136" height="15"/>
+				<textElement/>
+				<text><![CDATA[FACTURA N.-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="152" width="136" height="15"/>
+				<textElement/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="222" width="530" height="100"/>
+				<subreportParameter name="numeroD">
+					<subreportParameterExpression><![CDATA[$P{numero}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["C://Reportes//detalle_facturas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50"/>
+	</summary>
+</jasperReport>
