@@ -41,7 +41,7 @@ String key, iv;
             String varusuario, varclave;
             varusuario = txtusuario.getText();
             varclave = txtclave.getText();
-            JOptionPane.showMessageDialog(null, varclave);
+            //JOptionPane.showMessageDialog(null, varclave);
             while (rs.next()) {
                 String varUsuBase = rs.getString("ci_emp");
                 String varClaveBase = rs.getString("clave_emp");
@@ -54,7 +54,7 @@ String key, iv;
                     JOptionPane.showMessageDialog(null, ex);
                 }
                 ////
-                JOptionPane.showMessageDialog(null, varUsuBase + varClaveBase + var4);
+                //JOptionPane.showMessageDialog(null, varUsuBase + varClaveBase + var4);
                 if ((varusuario == null ? varUsuBase == null : varusuario.equals(varUsuBase)) && (varclave == null ? varClaveBase == null : varclave.equals(var4))) { //if condicional
                     if (rs.getString("car_emp").equals("ADMINISTRADOR")) {
                         menu mn = new menu();
@@ -127,7 +127,7 @@ String key, iv;
         lblaviso.setForeground(new java.awt.Color(153, 0, 0));
         lblaviso.setText("USUARIO O CLAVE INCORRECTO");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Usuario");
@@ -165,7 +165,7 @@ String key, iv;
         );
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel4.setText("SUPERMARKET \" LA CAJA NEGRA \"");
+        jLabel4.setText("SUPERMARKET \" TOTORAS\"");
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Salir");

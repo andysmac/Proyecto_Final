@@ -178,7 +178,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="SUPERMARKET &quot; LA CAJA NEGRA &quot;"/>
+        <Property name="text" type="java.lang.String" value="SUPERMARKET &quot; TOTORAS&quot;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">

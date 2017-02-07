@@ -1,8 +1,7 @@
 
 package interfaces;
 
-import interfaces.Empleados;
-import static interfaces.factura.txtNumFac;
+import Interfaces.Empleados;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
@@ -44,7 +43,6 @@ public class menu extends javax.swing.JFrame {
         menuUsuarios = new javax.swing.JMenu();
         miUsuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -93,10 +91,6 @@ public class menu extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/reports.png"))); // NOI18N
         jMenu2.setText("REPORTES");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/empleados.png"))); // NOI18N
-        jMenuItem1.setText("EMPLEADOS");
-        jMenu2.add(jMenuItem1);
-
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/clientes.png"))); // NOI18N
         jMenuItem3.setText("CLIENTES");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +102,11 @@ public class menu extends javax.swing.JFrame {
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/productos.png"))); // NOI18N
         jMenuItem4.setText("PRODUCTOS");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
@@ -172,8 +171,8 @@ private void miVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Empleados e = new Empleados();
             pane1.add(e);
             e.show();
-           e.btGuardarU.setVisible(false);
-        } catch (ParseException ex) {
+            e.btGuardarE.setVisible(false);
+        } catch (Exception ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_miUsuariosActionPerformed
@@ -189,13 +188,12 @@ private void miVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        try {
+try {
             Conexion cc = new Conexion();
             Connection cn = cc.conectar();
 //            Map parametro = new HashMap();
 //            parametro.put("numFac", txtNumFac.getText());
-            JasperReport reporte = JasperCompileManager.compileReport("src/Reportes/clientes.jrxml");
+            JasperReport reporte = JasperCompileManager.compileReport("src/Reportes/report1.jrxml");
             JasperPrint print = JasperFillManager.fillReport(reporte,null, cc.conectar());
              //JasperViewer.viewReport(print, false);
              JInternalFrame interno = new JInternalFrame("Reporte");
@@ -211,8 +209,37 @@ private void miVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }catch(Exception ex){
     JOptionPane.showMessageDialog(null, ex);
 }
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+       String nomb=JOptionPane.showInputDialog("Ingrese una maraca de un producto:").toUpperCase();
+        if(nomb.equals(" ")){
+            JOptionPane.showMessageDialog(null,"Porfavor ingrese una marca");
+        }else{
+              try {
+            Conexion cc = new Conexion();
+            Connection cn = cc.conectar();
+            Map parametro = new HashMap();
+            parametro.put("marca",nomb);
+            JasperReport reporte = JasperCompileManager.compileReport("src/Reportes/pormarca.jrxml");
+            JasperPrint print = JasperFillManager.fillReport(reporte, parametro, cc.conectar());
+             //JasperViewer.viewReport(print, false);
+             JInternalFrame interno = new JInternalFrame("Reporte");
+            interno.getContentPane().add(new JRViewer(print));
+            menu.pane1.add(interno);
+            interno.pack();
+            interno.setClosable(true);
+            interno.setMaximizable(true);
+            interno.setResizable(true);
+            interno.setVisible(true);
+            interno.setResizable(true);
+            interno.setSize(menu.pane1.getSize());
+}catch(Exception ex){
+    JOptionPane.showMessageDialog(null, ex);
+}
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -237,7 +264,6 @@ private void miVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -251,7 +277,6 @@ private void miVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
